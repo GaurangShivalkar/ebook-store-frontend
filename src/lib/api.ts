@@ -1,13 +1,11 @@
-// src/lib/api.ts
 import axios from 'axios';
 import { useAuthStore } from '../store/authStore'
 
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api', // Your backend URL
+  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api',
 });
 
-// This is a "request interceptor"
-// It runs *before* every single API request
+t
 api.interceptors.request.use(
   (config) => {
     // Get the token from our Zustand store

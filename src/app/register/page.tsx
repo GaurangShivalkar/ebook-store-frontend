@@ -1,5 +1,3 @@
-// This is the most important line!
-// It tells Next.js this is a Client Component, so we can use hooks.
 'use client'; 
 
 import { useState } from 'react';
@@ -18,10 +16,10 @@ export default function RegisterPage() {
   const router = useRouter();
   const login = useAuthStore((state) => state.login);
 
-  // 3. The Submit Handler (The Engine)
+  // 3. The Submit Handler
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault(); // Stop the page from reloading
-    setError(''); // Clear any old errors
+    e.preventDefault(); 
+    setError(''); 
 
     try {
       // 4. Call our backend API
@@ -32,7 +30,7 @@ export default function RegisterPage() {
       });
 
       // 5. Success!
-      // Destructure the user and token from the response
+  
       const { token, ...user } = response.data;
       
       // Save them to our global Zustand store

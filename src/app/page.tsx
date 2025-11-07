@@ -19,7 +19,7 @@ export default function HomePage() {
   // Get auth state
   const token = useAuthStore((state) => state.token);
 
-  // 1. Fetch products from our backend
+  
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -35,11 +35,11 @@ export default function HomePage() {
       }
     };
     fetchProducts();
-  }, []); // Runs once on component mount
+  }, []); 
 
-  // 2. The "Buy" button handler
+
   const handlePurchase = async (productId: string) => {
-    // Check if user is logged in
+ 
     if (!token) {
       setMessage('You must be logged in to purchase!');
       return;
@@ -47,16 +47,12 @@ export default function HomePage() {
 
     setMessage('Processing purchase...');
     try {
-      // This is the protected endpoint that contains all our logic
       const response = await api.post('/purchase', {
         productId: productId,
       });
 
       // 3. Success!
       setMessage(`Purchase successful! Your new credit balance is: ${response.data.credits}`);
-      // Note: The Navbar won't update credits automatically yet.
-      // A simple page refresh would fix it.
-      // Or we'd need to update the user in the Zustand store. Let's keep it simple for now.
 
     } catch (err: any) {
       console.error(err);

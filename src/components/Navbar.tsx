@@ -7,9 +7,6 @@ import { useRouter } from 'next/navigation';
 export default function Navbar() {
   const router = useRouter();
   
-  // 'useAuthStore' is a hook, so we can't get just one value.
-  // We use this 'shallow' selector to prevent re-renders
-  // when parts of the state we don't care about change.
 const user = useAuthStore((state) => state.user);
 const token = useAuthStore((state) => state.token);
 const logout = useAuthStore((state) => state.logout);

@@ -36,7 +36,7 @@ export default function LoginPage() {
       // 6. Handle Errors
       console.error(err);
       if (err.response?.data?.message) {
-        setError(err.response.data.message); // e.g., "Invalid email or password"
+        setError(err.response.data.message); 
       } else {
         setError('Login failed. Please try again.');
       }

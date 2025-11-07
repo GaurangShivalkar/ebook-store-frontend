@@ -20,21 +20,18 @@ interface AuthState {
 
 // Create the store
 export const useAuthStore = create<AuthState>()(
-  // 'persist' middleware saves the store to localStorage
-  // This means you stay logged in even after refreshing the page!
+
   persist(
     (set) => ({
       token: null,
       user: null,
 
-      // Action to set token and user on login
       login: (token, user) => set({ token, user }),
 
-      // Action to clear token and user on logout
       logout: () => set({ token: null, user: null }),
     }),
     {
-      name: 'auth-storage', // name of the item in localStorage
+      name: 'auth-storage', 
     }
   )
 );

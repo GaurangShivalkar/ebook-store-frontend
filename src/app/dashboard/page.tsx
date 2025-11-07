@@ -18,12 +18,11 @@ interface DashboardData {
 export default function DashboardPage() {
   const router = useRouter();
 
-  // ----- THE FIX (Part 1) -----
-  // Add a state to track if we are mounted on the client
+
   const [isMounted, setIsMounted] = useState(false);
 
   // 1. Get user and logout function from Zustand
-  // This selector is fine, but we'll be careful *when* we use its data
+
 const user = useAuthStore((state) => state.user);
 const token = useAuthStore((state) => state.token);
 const logout = useAuthStore((state) => state.logout);
@@ -34,21 +33,17 @@ const logout = useAuthStore((state) => state.logout);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  // ----- THE FIX (Part 2) -----
-  // When the component mounts, set isMounted to true
+
   useEffect(() => {
     setIsMounted(true);
-  }, []); // Empty array means this runs once on the client
+  }, []); 
 
   // 3. Fetch data when the component loads
   useEffect(() => {
-    // ----- THE FIX (Part 3) -----
-    // Don't do anything until we are safely mounted on the client
     if (!isMounted) {
       return;
     }
 
-    // Now we can safely check the token from the store
     if (!token) {
       router.push('/login');
       return;
@@ -71,18 +66,13 @@ const logout = useAuthStore((state) => state.logout);
 
     fetchDashboardData();
   
-  // We add isMounted to the dependency array
-  }, [isMounted, token, router, logout]); // Dependencies
+  }, [isMounted, token, router, logout]); 
 
   const handleLogout = () => {
     logout();
     router.push('/login');
   };
 
-  // ----- THE FIX (Part 4) -----
-  // By checking !isMounted, we guarantee the server and the
-  // initial client render show the *same* thing (the loading UI).
-  // This prevents the hydration mismatch.
   if (!isMounted || loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -101,11 +91,9 @@ const logout = useAuthStore((state) => state.logout);
   }
 
   // 6. The Actual UI
-  // This part will only ever render on the client *after*
-  // isMounted is true, so it's safe to use `user` and `data`.
   return (
    <div className="min-h-screen bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] text-white">
-      {/* Main Content (with top padding to avoid overlapping global navbar) */}
+      {/* Main Content*/}
       <main className="max-w-6xl mx-auto px-6 pt-28 pb-12">
         {/* Welcome Header */}
         <div className="mb-10">
