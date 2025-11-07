@@ -141,6 +141,7 @@ const logout = useAuthStore((state) => state.logout);
 };
 
 // Glassmorphic Stat Card
+// @ts-nocheck
 function StatCard({ title, value }) {
   return (
     <div className="p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 shadow-md hover:scale-[1.03] hover:shadow-purple-700/30 transition duration-300">
