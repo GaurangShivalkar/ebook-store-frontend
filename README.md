@@ -3,8 +3,8 @@
 
 This is the **[FRONTEND]** for the FileSure Full Stack Intern assignment. The goal was to build a complete referral and credit system for a digital e-book store.
 
-* **Live Frontend:** [Link to your Vercel URL]
-* **Live Backend:** [Link to your Render URL]
+* **Live Frontend:** ebook-store-frontend-6erp2q80w-gaurangshivalkars-projects.vercel.app
+* **Live Backend:** https://ebook-store-backend-bjeb.onrender.com
 * **Backend Repo:** https://github.com/GaurangShivalkar/ebook-store-bacckend.git
 
 ---
