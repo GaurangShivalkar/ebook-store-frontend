@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FileSure – Full Stack Developer Intern Assignment
+### Project: E-Book Store Referral & Credit System
 
-## Getting Started
+This is the **[FRONTEND]** for the FileSure Full Stack Intern assignment. The goal was to build a complete referral and credit system for a digital e-book store.
 
-First, run the development server:
+* **Live Frontend:** [Link to your Vercel URL]
+* **Live Backend:** [Link to your Render URL]
+* **Backend Repo:** https://github.com/GaurangShivalkar/ebook-store-bacckend.git
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🏛️ Architecture & System Design
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The application is built with a modern, decoupled full-stack architecture.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* **Frontend:** Next.js (App Router) with TypeScript & Tailwind CSS.
+* **Backend:** Node.js & Express with TypeScript.
+* **Database:** MongoDB.
+* **State Management:** Zustand (for global auth state).
+* **Authentication:** JWT (JSON Web Tokens) stored in `localStorage` via Zustand's persist middleware.
 
-## Learn More
+#### System Data Flow
 
-To learn more about Next.js, take a look at the following resources:
+The core logic revolves around the relationship between the `User` and `Purchase` models. When a new user (ABC) signs up using a referrer's code (XYZ), the `referredBy` field on ABC's user document is set to XYZ's `_id`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+When Ryan makes his *first* purchase, an atomic transaction is started to:
+1.  Check if `user.hasMadeFirstPurchase` is `false`.
+2.  Give ABC 2 credits.
+3.  Set `user.hasMadeFirstPurchase` to `true`.
+4.  Find ABC's referrer (XYZ) via `user.referredBy`.
+5.  Atomically increment XYZ's `credits` by 2.
+6.  Commit the transaction.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 🚀 Local Setup
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**[FOR FRONTEND REPO]**
+
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/GaurangShivalkar/ebook-store-frontend.git
+    cd ebook-store-frontend
+    ```
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
+3.  Set up environment variables. Create a `.env.local` file:
+    ```ini
+    # This must point to your backend (local or live)
+    NEXT_PUBLIC_API_URL=http://localhost:5000/api
+    ```
+4.  Run the development server:
+    ```bash
+    npm run dev
+    ```
+    Open [http://localhost:3000](http://localhost:3000)
