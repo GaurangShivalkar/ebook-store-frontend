@@ -5,7 +5,7 @@ This is the **[FRONTEND]** for the FileSure Full Stack Intern assignment. The go
 
 * **Live Frontend:** https://ebook-store-frontend-6erp2q80w-gaurangshivalkars-projects.vercel.app/
 * **Live Backend:** https://ebook-store-backend-bjeb.onrender.com
-* **Backend Repo:** https://github.com/GaurangShivalkar/ebook-store-bacckend.git
+* **Backend Repo:** https://github.com/GaurangShivalkar/ebook-store-backend.git
 
 ---
 
